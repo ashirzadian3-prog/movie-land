@@ -1,0 +1,86 @@
+.Footercontainer {
+    background-color: black;
+    padding: 40px 24px;
+    text-align: right;
+    color: white;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.Footercontainer {
+    position: relative;
+    background:
+        radial-gradient(circle at 15% 20%, rgb(202 21 228 / 31%), #e8c7c700 35%),
+        linear-gradient(135deg, #080808 0%, #0d0b10 50%, #010101 100%);
+    color: #fff;
+    padding: 70px 7% 25px;
+    overflow: hidden;
+}
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+}
+
+.Footer p {
+    color: black;
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #fff;
+}
+
+.Footer a {
+    display: block;
+    font-size: 16px;
+    color: #534343;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.15s ease;
+    color: #e4e4e4;
+}
+
+.Footer a:hover {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.Footer span {
+    font-size: 16px;
+    color: #534343;
+    line-height: 1.6;
+    color: #e4e4e4;
+}
+
+.FooterBtn {
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #381dd0;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.FooterBtn:hover {
+    background-color: #1a00ae;
+}
+
+@media (max-width: 768px) {
+    .Footercontainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .Footercontainer {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,112 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYaJuDs4Ck7bJUnn2xno9fk14o60YmwYED9nvciMJOPA&s=10",
+      "title": "چیزهای عجیب و غریب؛ نقد و بررسی سریال Stranger Things  ",
+      "readingtime": 5,
+      "author": "سارا نادری",
+      "category": "مقاله",
+      "date": "2026-08-01",
+      "views": 1200,
+      "textarea": "چیزهای عجیب و غریب یک سریال علمی‌تخیلی و رازآلود است که داستان گروهی از نوجوانان و اتفاقات عجیب شهر هاوکینز را روایت می‌کند.  "
+    },
+    {
+      "id": "2",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQswdZY_w88fqxloxhzDbZsXWJC8bkap1-z7rCSLJpyA&s=10",
+      "title": "بازی تاج و تخت؛ نقد و بررسی یکی از ماندگارترین سریال‌ها",
+      "readingtime": 4,
+      "author": "سارا نادری",
+      "category": "بررسی",
+      "date": "2026-08-02",
+      "views": 980,
+      "textarea": "بازی تاج و تخت داستان خاندان‌های قدرتمندی را روایت می‌کند که برای به دست آوردن تخت آهنین و کنترل سرزمین وستروس با یکدیگر رقابت می‌کنند."
+    },
+    {
+      "id": "3",
+      "image": "data:image/jpeg;base64,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",
+      "title": " مانی هیست؛ نقد و بررسی سریال Money Heist",
+      "readingtime": 6,
+      "author": "سارا نادری",
+      "category": "مقاله",
+      "date": "2026-08-03",
+      "views": 850,
+      "textarea": "مانی هیست داستان گروهی از سارقان با نقشه‌ای دقیق برای سرقت از ضرابخانه سلطنتی اسپانیا را روایت می‌کند و با شخصیت‌های متفاوت و داستان پرتنش مخاطب را درگیر می‌کند."
+    },
+    {
+      "id": "4",
+      "image": "https://parsstock.ir/600/10378/1745873-%D8%B9%DA%A9%D8%B3-%DA%AF%D8%B1%D9%88%D9%87%DB%8C-%D8%B4%D8%AE%D8%B5%DB%8C%D8%AA%E2%80%8C%D9%87%D8%A7%DB%8C-%D8%B3%D8%B1%DB%8C%D8%A7%D9%84-%D9%BE%DB%8C%DA%A9%DB%8C-%D8%A8%D9%84%D8%A7%DB%8C%D9%86%D8%AF%D8%B1%D8%B2-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AA%D8%A7%D8%A8%D9%84%D9%88-%D8%AF%DA%A9%D9%88%D8%B1%D8%A7%D8%AA%DB%8C%D9%88-%D8%AC%D9%88%D8%A7%D9%86.jpg",
+      "title": "پیکی بلایندرز نقد فیلم",
+      "readingtime": 5,
+      "author": "علی رضایی",
+      "category": "نقد",
+      "date": "2026-08-04",
+      "views": 1100,
+      "textarea": "گروهی از مردان در لندن با رهبری توماس شلبی"
+    },
+    {
+      "id": "5",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQivgulCzmFhjafTl8dKd43u0Afj79kVB3lilNlkEIN0Q&s=10",
+      "title": "تحلیل سریال وایکینگ ها",
+      "readingtime": 4,
+      "author": "مریم احمدی",
+      "category": "تحلیل",
+      "date": "2026-08-05",
+      "views": 760,
+      "textarea": "سریال جذاب وایکینگ ها مربوط به گروهی از وایکینگ ها است کخ..."
+    },
+    {
+      "id": "6",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaDTyAVqkIzHiteJY0oVFDEz-7_Pm9dl1v85hBdJXr4w&s=10",
+      "title": "تحلیل سریال برکینگ بد",
+      "readingtime": 7,
+      "author": "تحلیل سریال موش کره ای",
+      "category": "تحلیل",
+      "date": "2026-08-06",
+      "views": 1350,
+      "textarea": "داستان درباره یک معلم شیمی است که تصمیم به درست کردن مواد مخدر میگیرید..."
+    },
+    {
+      "id": "7",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGMmtzSwSyUzhZwR_aFO_uKsAhnVUIIsWO8bGzIx34AA&s=10",
+      "title": "فیلم انتقام جوبان بازی اخر",
+      "readingtime": 5,
+      "author": "سارا نادری",
+      "category": "نقد",
+      "date": "2026-08-03",
+      "views": 1420,
+      "textarea": "بعد از اتفاقات انتقام جویان جنگ بینهایت گروهی از قهرمان ها دور هم جگع میشوند تا..."
+    },
+    {
+      "id": "8",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQseNRHIdKTV5fbCMj_G9TVmjXxYuK8ODV7Rm9maAVikA&s",
+      "title": "مقاله ای راحب فیلم تایتانیک",
+      "readingtime": 5,
+      "author": "علی رضایی",
+      "category": "مقاله",
+      "date": "2026-08-08",
+      "views": 920,
+      "textarea": "داستانی بر اساس واقعیت فاجعه"
+    },
+    {
+      "id": "nEXZDBAQW3Q",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqE9v1aCnO86-cKZ2eHPR3wcMa6rItu9xLaI-WjwGBuQ&s=10",
+      "title": "دختر توت فرنگی",
+      "date": "2026-05-9",
+      "readingtime": "بالا",
+      "author": "انیتا",
+      "textarea": "انیمیشنی بسیار جذاب درباره دختری ابر قهرمان..."
+    },
+    {
+      "id": "qx92uLMl-zI",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1NjskpQHgs1FpFzM2aQC35xXgu6Eqes-tKo0h2ge_mA&s=10",
+      "title": "نقد حادثه وحشتناک چرنوبیل",
+      "date": "2025",
+      "readingtime": "29h",
+      "author": "بتمن",
+      "textarea": "سریالی بر اساس واقعیت تلخ چرنوبیل",
+      "category": "نقد"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

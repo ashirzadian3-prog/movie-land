@@ -1,0 +1,89 @@
+.articleContaienr {
+    width: 100%;
+    height: 500px;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.articleContaienr:hover {
+    transform: scale(0.95);
+}
+
+.articleContaienr img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.articleContent {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.articleContent h3 {
+    margin: 0 0 15px;
+    line-height: 1.8;
+}
+
+.articleContent p {
+    margin: 8px 0;
+    color: #777;
+    padding: 0;
+}
+
+
+.articleContaienr span.category.نقد {
+    background-color: orange;
+}
+
+.category.تحلیل {
+    background-color: red;
+}
+
+.category.بررسی {
+    background-color: #2EA36B;
+}
+
+.category.مقاله {
+    background-color: #7C5CFF;
+}
+
+.articleContaienr span {
+    position: absolute;
+    top: 3%;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .articleContaienr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .articlewrappwe a {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .articlewrappwe {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+    }
+}

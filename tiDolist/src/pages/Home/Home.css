@@ -1,0 +1,78 @@
+.articlewrappwe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.homeh2 {
+    text-align: right;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 28px;
+}
+
+.hometextcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.homep {
+    color: #e8232e;
+    margin-left: 3.5rem;
+    font-size: 17px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.homep:hover {
+    font-size: 18px;
+    color: #f00b16;
+    font-weight: 700;
+    transform: translateY(-1);
+}
+
+.articlewrappwe a {
+    display: block;
+    width: 24%;
+    color: black;
+
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .articlewrappwe a {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .articlewrappwe {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 480px) {
+    .articleContaienr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .articlewrappwe {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .articlewrappwe a {
+        width: 100%;
+    }
+}

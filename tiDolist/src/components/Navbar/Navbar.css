@@ -1,0 +1,287 @@
+ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.navbar-container {
+    border-bottom: 1px solid black;
+}
+
+.header {
+    display: flex;
+}
+
+.navbar-container {
+    position: relative;
+    /* مهمه، تا آویزون نسبت به همین باکس جاگیر بشه */
+    overflow: visible;
+    /* اگه parent اش overflow:hidden داشت، عکس بریده می‌شد */
+}
+
+.spidey-hang {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    /* هرجا خواستی آویزونش کن، عدد رو عوض کن */
+    z-index: 50;
+    transform-origin: top center;
+    animation: spidey-swing 6s ease-in-out infinite;
+    pointer-events: none;
+    /* که جلوی کلیک روی منو رو نگیره */
+}
+
+.spidey-hang img {
+    width: 200px;
+    /* توی نوبار کوچیک‌تر از هدر اصلی باشه بهتره */
+    height: auto;
+    /* filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .4)); */
+}
+
+.spidey-strand {
+    width: 2px;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .1));
+}
+
+@keyframes spidey-swing {
+
+    0%,
+    100% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(4deg);
+    }
+}
+
+.navbarh2 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+/* From Uiverse.io by biswacpcode */
+.button {
+    color: rgb(50, 50, 50);
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    background: none;
+    font-weight: 400;
+
+}
+
+.button::before {
+    margin-left: auto;
+}
+
+.button::after,
+.button::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #1163FF;
+    display: block;
+    transition: 0.5s;
+
+}
+
+.button:hover::after,
+.button:hover::before {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media (min-width: 700px) and (max-width: 1450px) {
+    .container {
+        padding: 0px 60px;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .container {
+        padding: 0 25px;
+    }
+
+    .header {
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .navbarh2 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    /* دکمه همبرگری */
+    .menu-toggle {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        height: 42px;
+
+        background: transparent;
+        border: 1px solid #333;
+        border-radius: 8px;
+
+        font-size: 25px;
+        color: #222;
+
+        cursor: pointer;
+    }
+
+    /* منوی اصلی در حالت بسته */
+    .header ul {
+        display: none;
+    }
+
+    /* منوی باز */
+    .header ul.menu-open {
+        display: flex;
+        position: absolute;
+        top: 70px;
+        right: 25px;
+        width: 190px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        z-index: 100;
+    }
+
+    .header ul.menu-open a {
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .header ul.menu-open li {
+        list-style: none;
+        width: 100%;
+    }
+
+    .header ul.menu-open .button {
+        width: 100%;
+        padding: 13px 10px;
+
+        text-align: right;
+
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .header ul.menu-open .button:hover {
+        color: #e8232e;
+    }
+
+    /* اسپایدر */
+    .spidey-hang {
+        left: 8%;
+    }
+
+    .spidey-hang img {
+        width: 150px;
+    }
+}
+
+
+/* =========================
+       0 تا 480px
+    ========================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .header {
+        min-height: 65px;
+        padding: 0 19px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: relative;
+    }
+
+    .navbarh2 {
+        font-size: 21px;
+        margin: 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 1px solid #333;
+        border-radius: 8px;
+        font-size: 23px;
+        color: #222;
+        cursor: pointer;
+    }
+
+    .header ul {
+        display: none;
+    }
+
+    .header ul.menu-open {
+        display: flex;
+        position: absolute;
+        top: 65px;
+        right: 15px;
+        width: 175px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        z-index: 100;
+    }
+
+    .header ul.menu-open a {
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .header ul.menu-open li {
+        list-style: none;
+    }
+
+    .header ul.menu-open .button {
+        width: 100%;
+        padding: 12px 8px;
+        text-align: right;
+        font-size: 15px;
+    }
+
+    .spidey-hang img {
+        width: 120px;
+    }
+}

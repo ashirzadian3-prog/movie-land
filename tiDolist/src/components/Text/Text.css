@@ -1,0 +1,12 @@
+.Textcontainer {}
+
+.Textcontainer label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.Textcontainer textarea {
+    width: 100%;
+    min-height: 200px;
+}
