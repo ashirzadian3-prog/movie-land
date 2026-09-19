@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Contact.css'
 import Navbar from '../../components/Navbar/Navbar'
-import axios from 'axios'
+import { supabase } from '../../supabaseClient'
 import Footer from '../../components/Footer/Footer'
 
 function Contact() {
@@ -30,35 +30,38 @@ function Contact() {
         }))
     }
 
-    const handlebutton = () => {
-        axios.post("http://localhost:8000/articles", {
-            id: 12,
-            image: input.imageurl,
-            title: input.name,
-            date: input.date,
-            readingtime: input.readingtime,
-            author: input.author,
-            textarea: input.textarea,
-            category: input.category
-        })
-            .then((result) => {
-                console.log("مقاله با موفقیت ثبت شد", result.data)
-                setinput({
-                    name: "",
-                    date: "",
-                    readingtime: "",
-                    author: "",
-                    textarea: "",
-                    imageurl: "",
-                    category: ""
-                })
-            })
-            .catch((error) => {
-                console.log("خطا در ارسال مقاله:", error)
-            })
-    }
+    const handlebutton = async () => {
+        const { data, error } = await supabase
+            .from('articles')
+            .insert([{
+                id: Date.now().toString(),
+                image: input.imageurl,
+                title: input.name,
+                date: input.date,
+                readingtime: input.readingtime,
+                author: input.author,
+                textarea: input.textarea,
+                category: input.category
+            }])
+            .select()
 
-    console.log(input)
+        if (error) {
+            console.log("خطا در ارسال مقاله:", error)
+            return
+        }
+
+        console.log("مقاله با موفقیت ثبت شد", data)
+
+        setinput({
+            name: "",
+            date: "",
+            readingtime: "",
+            author: "",
+            textarea: "",
+            imageurl: "",
+            category: ""
+        })
+    }
 
     return (
         <div>

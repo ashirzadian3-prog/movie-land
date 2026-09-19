@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar'
 import './Allarticles.css'
-import axios from 'axios';
 import Loading from '../../components/Loading/Loading';
 import Article from '../../components/Article/Article';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { supabase } from '../../supabaseClient'
 
 function Allarticles() {
     const [category, setcategory] = useState('همه')
@@ -16,12 +16,19 @@ function Allarticles() {
 
     useEffect(() => {
         setloading(true)
-        axios.get("http://localhost:8000/articles").then((result) => {
-            setarticles(result.data);
-            setloading(false)
-        })
-            .catch((error) => {
-                console.log(error);
+
+        supabase
+            .from('articles')
+            .select('*')
+            .then(({ data, error }) => {
+                if (error) {
+                    console.error('Supabase Error:', error)
+                    return
+                }
+
+                setarticles(data)
+            })
+            .finally(() => {
                 setloading(false)
             })
     }, [])
@@ -32,6 +39,7 @@ function Allarticles() {
         }
         return article.category === category
     })
+
     return (
         <div className='Allarticlescontainer'>
             <Navbar title="مقاله لند" />
@@ -39,16 +47,19 @@ function Allarticles() {
                 <div className='Allarticlestext'>
                     <h2>همه مقالات</h2>
                     <p>نقد، تحلیل و بررسی فیلم‌های سینمایی از نویسندگان مقاله لند.</p>
+
                     <div className='categorybuttons'>
                         <button id="bottone5" onClick={() => { setcategory('همه') }}>همه</button>
-                        <button id="bottone5" onClick={() => { setcategory('تحقیق') }}>تحقیق</button>
+                        <button id="bottone5" onClick={() => { setcategory('تحلیل') }}>تحلیل</button>
                         <button id="bottone5" onClick={() => { setcategory('بررسی') }}>بررسی</button>
                         <button id="bottone5" onClick={() => { setcategory('نقد') }}>نقد</button>
                         <button id="bottone5" onClick={() => { setcategory('مقاله') }}>مقاله</button>
                     </div>
-
                 </div>
-                {loading ? (<Loading />) : (
+
+                {loading ? (
+                    <Loading />
+                ) : (
                     <div className="articlewrappwe">
                         {
                             categoryfilter.map(article =>
@@ -60,6 +71,7 @@ function Allarticles() {
                     </div>
                 )}
             </div>
+
             <Footer />
         </div>
     )

@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
 import './Articlepages.css'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import Loading from '../Loading/Loading'
 import Navbar from '../Navbar/Navbar'
+import { supabase } from '../../supabaseClient'
 
 function Articlepages() {
     const [article, setarticle] = useState({})
@@ -13,15 +13,25 @@ function Articlepages() {
 
     useEffect(() => {
         setloading(true)
-        axios.get(`http://localhost:8000/articles/${params.id}`).then((result) => {
-            setarticle(result.data);
-            setloading(false)
-        }).catch((error) => {
-            console.log(error);
-            setloading(false)
-        })
 
-    }, [])
+        supabase
+            .from('articles')
+            .select('*')
+            .eq('id', params.id)
+            .single()
+            .then(({ data, error }) => {
+                if (error) {
+                    console.error('Supabase Error:', error)
+                    return
+                }
+
+                setarticle(data)
+            })
+            .finally(() => {
+                setloading(false)
+            })
+
+    }, [params.id])
 
     return (
         <>
@@ -32,17 +42,18 @@ function Articlepages() {
                     <>
                         <h1 style={{ margin: '40px' }}>{article.title}</h1>
                         <img src={article.image} alt="" />
+
                         <div className="articlepagespans">
                             <span>نویسنده : {article.author}</span>
-                            <span > تاریخ انتشار : {article.date}</span>
+                            <span>تاریخ انتشار : {article.date}</span>
                             <span>زمان مطالعه : {article.readingtime}</span>
                         </div>
 
-                        <span style={{ color: "#4e4e4e" }} className='Articlepagescontainertext'>توضیحات : {article.textarea}</span>
-
+                        <span style={{ color: "#4e4e4e" }} className='Articlepagescontainertext'>
+                            توضیحات : {article.textarea}
+                        </span>
                     </>
                 )}
-
             </div>
         </>
     )

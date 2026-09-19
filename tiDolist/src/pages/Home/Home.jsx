@@ -2,29 +2,60 @@ import { useEffect, useState } from "react";
 import Article from "../../components/Article/Article";
 import Navbar from "../../components/Navbar/Navbar";
 import './Home.css'
-import axios from "axios";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import Herosectiontext from "../../components/herosectiontext/herosectiontext";
+import { supabase } from '../../supabaseClient'
+
+
 function Home() {
     const [articles, setarticles] = useState([])
     const [loading, setloading] = useState(false)
 
-    console.log(articles);
+    //     useEffect(() => {
+    //         setloading(true)
+    //         axios.get("http://localhost:8000/articles").then((result) => {
+    //             setarticles(result.data);
+    //         supabase
+    //             .from('articles')
+    //             .select('*')
+    //             .then(({ data, error }) => {
+    //                 if (error) {
+    //                     console.error(error)
+    //                     return
+    //                 }
+
+    //                 setarticles(data)
+    //             })
+    //         setloading(false)
+    //     })
+    //         .catch((error) => {
+    //             console.log(error);
+    //             setloading(false)
+    //         })
+    // }, [])
 
     useEffect(() => {
         setloading(true)
-        axios.get("http://localhost:8000/articles").then((result) => {
-            setarticles(result.data);
-            setloading(false)
-        })
-            .catch((error) => {
-                console.log(error);
+
+        supabase
+            .from('articles')
+            .select('*')
+            .then(({ data, error }) => {
+                if (error) {
+                    console.error('Supabase Error:', error)
+                    return
+                }
+
+                setarticles(data)
+            })
+            .finally(() => {
                 setloading(false)
             })
     }, [])
+
 
     return (
 
