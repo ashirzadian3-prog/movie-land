@@ -1,4 +1,4 @@
-import './Herosectiontext.css'
+import './HTXT.css'
 // import img from "./../../assets/joker.png"
 import img from "./../../assets/9a-mHxRnfvAQK68ex2TqGI33shY-klrtG-9WTF-4M-gu4n7_Cg-removebg-preview.png"
 import { Link } from 'react-router-dom'

@@ -6,36 +6,13 @@ import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import Herosectiontext from "../../components/herosectiontext/herosectiontext";
+import HTXT from "../../components/herosectiontext/HTXT";
 import { supabase } from '../../supabaseClient'
 
 
 function Home() {
     const [articles, setarticles] = useState([])
     const [loading, setloading] = useState(false)
-
-    //     useEffect(() => {
-    //         setloading(true)
-    //         axios.get("http://localhost:8000/articles").then((result) => {
-    //             setarticles(result.data);
-    //         supabase
-    //             .from('articles')
-    //             .select('*')
-    //             .then(({ data, error }) => {
-    //                 if (error) {
-    //                     console.error(error)
-    //                     return
-    //                 }
-
-    //                 setarticles(data)
-    //             })
-    //         setloading(false)
-    //     })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             setloading(false)
-    //         })
-    // }, [])
 
     useEffect(() => {
         setloading(true)
@@ -63,7 +40,7 @@ function Home() {
         <div className="homeContaienr">
             <Navbar title="مقاله لند" />
 
-            <Herosectiontext />
+            <HTXT />
 
             <div className="container">
                 <div className="hometextcontainer">
