@@ -5,7 +5,6 @@ import './Home.css'
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import HTXT from "../../components/herosectiontext/HTXT";
 import { supabase } from '../../supabaseClient'
 
@@ -46,7 +45,7 @@ function Home() {
                 <div className="hometextcontainer">
                     <h2 className="homeh2">مقالات جدید</h2>
                     <Link to="/about">
-                        <p className="homep">درباره ما<HiOutlineArrowNarrowLeft /></p>
+                        <p className="homep">درباره ما</p>
                     </Link>
                 </div>
                 {loading ? (<Loading />) : (
