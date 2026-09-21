@@ -252,7 +252,7 @@ ul {
         display: flex;
         position: absolute;
         top: 65px;
-        right: 15px;
+        left: 35px;
         width: 175px;
         flex-direction: column;
         align-items: stretch;

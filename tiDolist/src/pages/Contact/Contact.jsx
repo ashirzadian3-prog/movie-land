@@ -100,6 +100,12 @@ function Contact() {
                                 placeholder="عنوان مقاله را وارد کنید"
                                 value={input.name}
                                 onChange={handlechangearticle}
+                                required
+                                onInvalid={(e) =>
+                                    e.target.setCustomValidity("لطفا عنوان مقاله را وارد کنید")
+                                }
+                                onInput={(e) => e.target.setCustomValidity("")}
+
                             />
                         </div>
 
@@ -116,19 +122,25 @@ function Contact() {
                                 placeholder="نام نویسنده"
                                 value={input.author}
                                 onChange={handlechangearticle}
+                                required
+                                onInvalid={(e) =>
+                                    e.target.setCustomValidity("لطفاً نام خود را وارد کنید")
+                                }
+                                onInput={(e) => e.target.setCustomValidity("")}
                             />
                         </div>
 
                         {/* تاریخ */}
                         <div className="article_input_container">
-                            <label htmlFor="date">
+                            <label htmlFor="date" >
                                 تاریخ
                             </label>
 
                             <input
+                                required
                                 id="date"
                                 name="date"
-                                type="text"
+                                type="date"
                                 placeholder="مثلاً 1405/06/10"
                                 value={input.date}
                                 onChange={handlechangearticle}
@@ -149,6 +161,7 @@ function Contact() {
                                 <option value="بررسی">بررسی</option>
                                 <option value="نقد">نقد</option>
                                 <option value="مقاله">مقاله</option>
+
                             </select>
                         </div>
 
@@ -180,6 +193,12 @@ function Contact() {
                                 placeholder="https://example.com/image.jpg"
                                 value={input.imageurl}
                                 onChange={handlechangearticle}
+                                required
+                                onInvalid={(e) =>
+                                    e.target.setCustomValidity("لطفاً تصویر خود را وارد کنید")
+                                }
+                                onInput={(e) => e.target.setCustomValidity("")}
+
                             />
                         </div>
 
