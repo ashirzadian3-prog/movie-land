@@ -49,9 +49,9 @@ function Articlepages() {
                             <span>زمان مطالعه : {article.readingtime}</span>
                         </div>
 
-                        <span style={{ color: "#4e4e4e" }} className='Articlepagescontainertext'>
+                        <div style={{ color: "#4e4e4e" }} className='Articlepagescontainertext'>
                             توضیحات : {article.textarea}
-                        </span>
+                        </div>
                     </>
                 )}
             </div>

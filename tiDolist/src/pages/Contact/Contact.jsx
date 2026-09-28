@@ -193,7 +193,7 @@ function Contact() {
                                 placeholder="https://example.com/image.jpg"
                                 value={input.imageurl}
                                 onChange={handlechangearticle}
-                                required
+
                                 onInvalid={(e) =>
                                     e.target.setCustomValidity("لطفاً تصویر خود را وارد کنید")
                                 }
