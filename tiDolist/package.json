@@ -1,7 +1,15 @@
 {
-  "name": "tidolist",
+  "name": "movie-land",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Persian platform for reading and publishing movie and series reviews",
+  "license": "MIT",
+  "author": "A Shirzadian",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashirzadian3-prog/movie-land.git"
+  },
+  "homepage": "https://movie-land-sage.vercel.app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
