@@ -5,6 +5,7 @@ import Articlepages from "./components/Articlepages/Articlepages"
 import Contact from "./pages/Contact/Contact"
 import Error404 from "./pages/Error404/Error404"
 import Allarticles from "./pages/Allarticles/Allarticles"
+import Loginpage from "./pages/Loginpage/Loginpage"
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/Articlepage/:id" element={<Articlepages />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/Loginpage" element={<Loginpage />} />
+
+
       </Routes>
 
     </div >

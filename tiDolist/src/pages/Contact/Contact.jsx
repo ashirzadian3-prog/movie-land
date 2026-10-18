@@ -66,7 +66,7 @@ function Contact() {
     return (
         <div>
             <div className='con'>
-                <Navbar title="مقاله لند" />
+                <Navbar title="MovieLand" />
 
                 <div className="contact_page">
 

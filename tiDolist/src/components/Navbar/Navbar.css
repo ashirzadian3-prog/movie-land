@@ -23,7 +23,7 @@ ul {
 .spidey-hang {
     position: absolute;
     top: 0;
-    left: 8%;
+    left: 2%;
     /* هرجا خواستی آویزونش کن، عدد رو عوض کن */
     z-index: 50;
     transform-origin: top center;
@@ -41,7 +41,7 @@ ul {
 
 .spidey-strand {
     width: 2px;
-    height: 1px;
+    height: 20px;
     margin: 0 auto;
     background: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .1));
 }

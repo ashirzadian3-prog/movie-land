@@ -37,7 +37,7 @@ function Home() {
 
 
         <div className="homeContaienr">
-            <Navbar title="مقاله لند" />
+            <Navbar title="MovieLand" />
 
             <HTXT />
 

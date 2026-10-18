@@ -5,7 +5,7 @@ import './About.css';
 function About() {
     return (
         <div className="about-page">
-            <Navbar title="مقاله لند" />
+            <Navbar title="MovieLand" />
             <section className="about-hero">
                 <div className="about-hero-content">
                     <span>درباره مقاله لند</span>

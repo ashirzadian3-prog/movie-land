@@ -42,7 +42,7 @@ function Allarticles() {
 
     return (
         <div className='Allarticlescontainer'>
-            <Navbar title="مقاله لند" />
+            <Navbar title="MovieLand" />
             <div className='container'>
                 <div className='Allarticlestext'>
                     <h2>همه مقالات</h2>
