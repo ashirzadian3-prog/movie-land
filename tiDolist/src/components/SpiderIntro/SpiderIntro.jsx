@@ -2,11 +2,6 @@ import { useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import "./SpiderIntro.css"
 
-/*
-  عنکبوتی که از تار گوشه صفحه شروع می‌کند و روی کارت فرم می‌نشیند.
-  منطق و ظاهر عنکبوت (پاها، بدن، حرکت) عیناً همان نسخه HTML است.
-  cardRef: ref کارت لاگین (همان جایی که عنکبوت باید رویش بنشیند)
-*/
 function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, .navbar' }) {
     const layerRef = useRef(null)
     const webRef = useRef(null)
@@ -26,24 +21,40 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
         const clamp = (v, a, b) => Math.max(a, Math.min(b, v))
         const wrap = a => { while (a > Math.PI) a -= TAU; while (a < -Math.PI) a += TAU; return a }
 
-        /* ---------- تار عنکبوت گوشه صفحه ---------- */
-        left.innerHTML = ''
-            ; (function web() {
-                const R = 530, n = 8, NS = 'http://www.w3.org/2000/svg'
-                const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'web')
-                svg.setAttribute('width', R); svg.setAttribute('height', R)
-                let d = ''; const pt = (a, r) => [Math.cos(a) * r, Math.sin(a) * r]
-                for (let k = 0; k < n; k++) { const a = k * (Math.PI / 2) / (n - 1); const [x, y] = pt(a, R); d += `M0 0L${x} ${y}` }
-                for (let r = 0.16; r <= 1.0; r += 0.14) {
-                    for (let k = 0; k < n - 1; k++) {
-                        const a1 = k * (Math.PI / 2) / (n - 1), a2 = (k + 1) * (Math.PI / 2) / (n - 1)
-                        const [x1, y1] = pt(a1, r * R), [x2, y2] = pt(a2, r * R), [cx, cy] = pt((a1 + a2) / 2, r * R * 0.9)
-                        d += `M${x1} ${y1}Q${cx} ${cy} ${x2} ${y2}`
-                    }
+        function renderWeb() {
+            left.innerHTML = ''
+            const screenW = document.documentElement.clientWidth
+            const R = screenW <= 600 ? 240 : screenW <= 1024 ? 380 : 530
+            const n = 8, NS = 'http://www.w3.org/2000/svg'
+
+            const svg = document.createElementNS(NS, 'svg')
+            svg.setAttribute('class', 'web')
+            svg.setAttribute('width', R)
+            svg.setAttribute('height', R)
+
+            let d = ''
+            const pt = (a, r) => [Math.cos(a) * r, Math.sin(a) * r]
+            for (let k = 0; k < n; k++) {
+                const a = k * (Math.PI / 2) / (n - 1)
+                const [x, y] = pt(a, R)
+                d += `M0 0L${x} ${y}`
+            }
+            for (let r = 0.16; r <= 1.0; r += 0.14) {
+                for (let k = 0; k < n - 1; k++) {
+                    const a1 = k * (Math.PI / 2) / (n - 1), a2 = (k + 1) * (Math.PI / 2) / (n - 1)
+                    const [x1, y1] = pt(a1, r * R), [x2, y2] = pt(a2, r * R)
+                    const [cx, cy] = pt((a1 + a2) / 2, r * R * 0.9)
+                    d += `M${x1} ${y1}Q${cx} ${cy} ${x2} ${y2}`
                 }
-                const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('fill', 'none')
-                p.setAttribute('stroke', 'rgba(0, 0, 0, 0.29)'); p.setAttribute('stroke-width', '2'); svg.appendChild(p); left.appendChild(svg)
-            })()
+            }
+            const p = document.createElementNS(NS, 'path')
+            p.setAttribute('d', d)
+            p.setAttribute('fill', 'none')
+            p.setAttribute('stroke', 'rgba(0, 0, 0, 0.25)')
+            p.setAttribute('stroke-width', screenW <= 600 ? '1.5' : '2')
+            svg.appendChild(p)
+            left.appendChild(svg)
+        }
 
         let W, H, DPR, u
 
@@ -61,13 +72,11 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
         }
 
         function size() {
-            // ارتفاع نوبار را بخوان تا تار دقیقاً به لبه‌ی پایین آن بچسبد
             const nav = document.querySelector(navSelector)
             let navH = 0
             if (nav) {
                 const nr = nav.getBoundingClientRect()
                 const fixed = getComputedStyle(nav).position === 'fixed'
-                // لبه‌ی پایین نوبار، نسبت به بالای سند
                 navH = Math.ceil(nr.bottom + (fixed ? 0 : window.scrollY))
             }
             page.style.setProperty('--nav-h', navH + 'px')
@@ -80,6 +89,8 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
             cv.width = W * DPR; cv.height = H * DPR
             cv.style.width = W + 'px'; cv.style.height = H + 'px'
             u = window.innerWidth <= 820 ? 12 : clamp(window.innerWidth / 60, 16, 24)
+
+            renderWeb()
         }
 
         const toW = (lx, ly) => ({
@@ -130,7 +141,6 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
             }
         }
 
-        /* ---------- منطق حرکت و راه رفتن ---------- */
         function update(dt) {
             S.t += dt
             const vmax = 10.0 * u
@@ -238,7 +248,6 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
             }
         }
 
-        /* ---------- حل هندسی مفاصل ---------- */
         function solveLeg(L) {
             const H = L.H, a = L.p.a * u, b = L.p.b * u
             const dx = L.fx - H.x, dy = L.fy - H.y, d = Math.hypot(dx, dy) || 1e-3
@@ -430,11 +439,15 @@ function SpiderIntro({ cardRef, showReplay = false, navSelector = 'nav, header, 
 
     return createPortal(
         <>
-            <div className="spider-layer" ref={layerRef} aria-hidden="true">
+            {/* لایه زیرین: مخصوص تار عنکبوت که باید پشت همه چیز (حتی پشت فرم) باشد */}
+            <div className="spider-web-layer" ref={layerRef} aria-hidden="true">
                 <div className="spider-web" ref={webRef}></div>
                 <div className="spider-slot" ref={slotRef}></div>
-                <canvas className="spider-canvas" ref={canvasRef}></canvas>
             </div>
+
+            {/* لایه رویی: مخصوص عنکبوت که کاملاً مستقل از تار است و روی فرم حرکت می‌کند */}
+            <canvas className="spider-canvas" ref={canvasRef} aria-hidden="true"></canvas>
+
             {showReplay && (
                 <button
                     type="button"

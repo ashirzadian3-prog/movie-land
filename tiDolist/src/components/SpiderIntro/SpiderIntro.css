@@ -1,17 +1,15 @@
-/* لایه روی کل صفحه (از طریق portal در body) و بالاتر از نوبار */
-.spider-layer {
+/* 1. لایه تار عنکبوت: کاملاً زیر همه چیز (پشت فرم) */
+.spider-web-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
     pointer-events: none;
-    z-index: 2147483647;
+    z-index: -1;
     --nav-h: 70px;
-    /* با JS خودکار برابر ارتفاع نوبار می‌شود */
 }
 
-/* تار: چسبیده به لبه‌ی پایین نوبار، گوشه‌ی بالا-چپ */
 .spider-web {
     position: absolute;
     top: var(--nav-h);
@@ -25,21 +23,25 @@
     left: 0;
 }
 
-/* نقطه شروع عنکبوت: داخل تار */
+/* نقطه شروع عنکبوت */
 .spider-slot {
     position: absolute;
     left: 260px;
-    top: calc(var(--nav-h) + 200px);
-    width: 240px;
-    height: 200px;
+    top: calc(var(--nav-h) + 180px);
+    width: 220px;
+    height: 180px;
     transform: translate(-50%, -50%);
 }
 
+/* 2. بوم عنکبوت: کاملاً مستقل، بالاتر از فرم (بدون اختلال در کلیک‌ها با pointer-events: none) */
 .spider-canvas {
     position: absolute;
     left: 0;
     top: 0;
     pointer-events: none;
+    /* اجازه می‌دهد کلیک‌ها از روی عنکبوت رد شده و به اینپوت‌های فرم برسند */
+    z-index: 9999;
+    /* بالاتر از فرم و تمام المان‌ها */
 }
 
 .spider-replay {
@@ -56,13 +58,25 @@
     font-size: 13px;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+    pointer-events: auto;
 }
 
-@media (max-width: 820px) {
+/* --- تنظیمات تبلت --- */
+@media (max-width: 1024px) {
     .spider-slot {
-        left: 150px;
-        top: calc(var(--nav-h) + 120px);
-        width: 150px;
-        height: 120px;
+        left: 190px;
+        top: calc(var(--nav-h) + 140px);
+        width: 180px;
+        height: 150px;
+    }
+}
+
+/* --- تنظیمات موبایل --- */
+@media (max-width: 600px) {
+    .spider-slot {
+        left: 120px;
+        top: calc(var(--nav-h) + 100px);
+        width: 120px;
+        height: 100px;
     }
 }
