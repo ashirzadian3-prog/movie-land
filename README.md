@@ -200,3 +200,11 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 - GitHub: [@ashirzadian3-prog](https://github.com/ashirzadian3-prog)
 
 If you like this project, consider giving it a ⭐
+
+## Admin Panel
+
+An admin panel lives at `/admin` (login at `/admin/login`). It lets signed-in admins view stats, and create, edit, search and delete articles.
+
+1. Run `docs/schema.sql`, then `docs/admin.sql` in the Supabase SQL Editor.
+2. Create a user in Supabase: Authentication → Users → Add user.
+3. Make that user an admin by running the `insert into public.admins ...` snippet at the bottom of `docs/admin.sql`.
