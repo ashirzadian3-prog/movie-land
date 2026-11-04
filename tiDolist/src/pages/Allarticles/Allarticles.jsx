@@ -20,6 +20,7 @@ function Allarticles() {
         supabase
             .from('articles')
             .select('*')
+            .eq('status', 'published')
             .then(({ data, error }) => {
                 if (error) {
                     console.error('Supabase Error:', error)

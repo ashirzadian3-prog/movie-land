@@ -18,6 +18,7 @@ function Articlepages() {
             .from('articles')
             .select('*')
             .eq('id', params.id)
+            .eq('status', 'published')
             .single()
             .then(({ data, error }) => {
                 if (error) {

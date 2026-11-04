@@ -1,5 +1,6 @@
 -- Movie Land: database schema for Supabase (Postgres)
 -- Run this in the Supabase dashboard: SQL Editor -> New query.
+-- Then run docs/admin-setup.sql (admin panel tables and stricter policies).
 -- The columns below match what the app reads and writes (see tiDolist/src).
 
 create table if not exists public.articles (

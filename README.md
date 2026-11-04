@@ -28,6 +28,7 @@
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Supabase Setup](#supabase-setup)
+- [Admin Panel](#admin-panel)
 - [Available Scripts](#available-scripts)
 - [Project Structure](#project-structure)
 - [Routes](#routes)
@@ -57,6 +58,7 @@ I built it to practice shipping a real frontend project end to end: component ar
 - **Article detail pages** with dynamic routing (`/Articlepage/:id`)
 - **Four content categories:** تحلیل (Analysis), بررسی (Review), نقد (Critique), مقاله (Article)
 - **Article submission form** that saves new articles directly to the database
+- **Admin panel** (`/admin`) to manage articles, featured movies & series, users and comments
 - **Right-to-left layout** with a Persian typeface (IRANYekan)
 - **Responsive design** with a mobile navigation menu
 - **Loading states** and a custom **404 page**
@@ -68,7 +70,8 @@ I built it to practice shipping a real frontend project end to end: component ar
 | UI        | [React 19](https://react.dev/)                              |
 | Build     | [Vite](https://vite.dev/)                                   |
 | Routing   | [React Router](https://reactrouter.com/)                    |
-| Backend   | [Supabase](https://supabase.com/) (Postgres + REST client)  |
+| Backend   | [Supabase](https://supabase.com/) (Postgres, Auth + REST client) |
+| Movie data | [TMDB API](https://www.themoviedb.org/documentation/api) (admin panel only) |
 | Styling   | Plain CSS, one stylesheet per component                     |
 | Linting   | [Oxlint](https://oxc.rs/)                                   |
 | Hosting   | [Vercel](https://vercel.com/)                               |
@@ -107,16 +110,36 @@ The app will be available at `http://localhost:5173`.
 | ------------------------------- | -------------------------------------------- |
 | `VITE_SUPABASE_URL`             | Your Supabase project URL                    |
 | `VITE_SUPABASE_PUBLISHABLE_KEY` | Your Supabase publishable (anon) client key  |
+| `VITE_TMDB_API_KEY`             | TMDB API key, only needed for the admin panel's movie search (optional) |
 
 > Never commit your `.env` file. It is already listed in `.gitignore`. Only use the **publishable** key in the browser, never the `service_role` key.
 
 ## Supabase Setup
 
-The app reads from and writes to a single `articles` table. Create it from the SQL editor in your Supabase dashboard using [`docs/schema.sql`](docs/schema.sql).
+Create the `articles` table from the SQL editor in your Supabase dashboard using [`docs/schema.sql`](docs/schema.sql). Then run [`docs/admin-setup.sql`](docs/admin-setup.sql) to add everything the admin panel needs (see [Admin Panel](#admin-panel)).
 
-This file also enables Row Level Security with policies that allow public reads and inserts, which matches how the app works today. Review those policies before using the project in production.
+`schema.sql` enables Row Level Security with open public read/insert policies. `admin-setup.sql` replaces them with stricter ones: visitors only see **published** articles, and the public submission form can only create **pending** articles.
 
 Sample content is available in [`data/db.json`](data/db.json) if you want to seed the table with starter articles.
+
+## Admin Panel
+
+A protected admin area lives at **`/admin`** (login at `/admin/login`). It lets you:
+
+- **Dashboard:** counters and the latest articles
+- **Articles:** create, edit, delete, and publish / unpublish (draft) articles
+- **Movies & series:** search [TMDB](https://www.themoviedb.org/) and pick the featured titles shown on the home page
+- **Users:** list registered profiles and roles (read-only)
+- **Comments:** approve, reject or delete comments
+
+### Setting it up
+
+1. Run [`docs/admin-setup.sql`](docs/admin-setup.sql) in the Supabase SQL editor. It adds `status` / `updated_at` to `articles` and creates `profiles`, `comments` and `featured_media` with Row Level Security.
+2. In Supabase go to **Authentication → Users** and create your admin account (email + password).
+3. Promote it by running the commented `update public.profiles set role = 'admin' ...` query at the bottom of `admin-setup.sql` with your email.
+4. Optional: get a free TMDB API key and set `VITE_TMDB_API_KEY` in `.env` (and in Vercel) to enable movie search.
+
+> Access is enforced by Row Level Security in the database (`public.is_admin()`), not only by the React route guard. User roles can't be changed from the app; edit them in the Supabase dashboard. Note that any `VITE_*` variable, including the TMDB key, is bundled into the client code, so use a key you are fine exposing.
 
 ## Available Scripts
 
@@ -138,13 +161,18 @@ movie-land/
 │   └── db.json              # Sample articles for seeding
 ├── docs/
 │   ├── images/              # README screenshots
-│   └── schema.sql           # Database schema for Supabase
+│   ├── schema.sql           # Base database schema for Supabase
+│   └── admin-setup.sql      # Admin panel tables, columns and RLS policies
 └── tiDolist/                # The React application
     ├── public/
     └── src/
         ├── assets/          # Images and fonts
         ├── components/      # Reusable UI (Navbar, Footer, Article, Loading...)
+        │   └── Admin/       # ProtectedRoute (admin route guard)
+        ├── hooks/           # useAdminAuth (session + role)
+        ├── layouts/         # AdminLayout (sidebar + topbar) and its styles
         ├── pages/           # Route-level pages (Home, Allarticles, About, Contact, Error404)
+        │   └── Admin/       # Login, Dashboard, Articles, Movies, Users, Comments
         ├── App.jsx          # Route definitions
         ├── main.jsx         # Application entry point
         └── supabaseClient.js
@@ -160,6 +188,12 @@ movie-land/
 | `/contact`          | Submit a new article         |
 | `/about`            | About                        |
 | `*`                 | 404 Not Found                |
+| `/admin/login`      | Admin login                  |
+| `/admin`            | Admin dashboard (admins only) |
+| `/admin/articles`   | Manage articles (`/new`, `/:id/edit`) |
+| `/admin/movies`     | Featured movies & series     |
+| `/admin/users`      | Users                        |
+| `/admin/comments`   | Comment moderation           |
 
 ## Deployment
 
@@ -167,7 +201,7 @@ The project is deployed on Vercel. To deploy your own copy:
 
 1. Import the repository into Vercel.
 2. Set the **Root Directory** to `tiDolist`.
-3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as environment variables.
+3. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` (and optionally `VITE_TMDB_API_KEY`) as environment variables.
 4. Deploy. Vercel detects Vite automatically (build command `npm run build`, output directory `dist`).
 
 A [`vercel.json`](tiDolist/vercel.json) rewrite is included so direct links to inner pages (for example `/about`) work with client-side routing.
@@ -177,6 +211,7 @@ A [`vercel.json`](tiDolist/vercel.json) rewrite is included so direct links to i
 - [ ] Search and category filtering on the articles page
 - [ ] Pagination or infinite scroll
 - [ ] Form validation with inline error messages and success feedback
+- [x] Admin panel with authentication and role-based access
 - [ ] User authentication so only signed-in users can publish
 - [ ] Edit and delete for article authors
 - [ ] View counter and popular articles section
