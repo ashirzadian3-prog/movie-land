@@ -41,7 +41,8 @@ function Contact() {
                 readingtime: input.readingtime,
                 author: input.author,
                 textarea: input.textarea,
-                category: input.category
+                category: input.category,
+                status: 'pending'
             }])
             .select()
 
