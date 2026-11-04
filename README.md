@@ -124,7 +124,11 @@ Sample content is available in [`data/db.json`](data/db.json) if you want to see
 
 ## Admin Panel
 
-A protected admin area lives at **`/admin`** (login at `/admin/login`). It lets you:
+A protected admin area lives at **`/admin`** (login at `/admin/login`).
+
+<img src="docs/images/admin-dashboard.png" alt="Movie Land admin dashboard (sample data)" width="900">
+
+It lets you:
 
 - **Dashboard:** counters and the latest articles
 - **Articles:** create, edit, delete, and publish / unpublish (draft) articles
